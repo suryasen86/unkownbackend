@@ -15,4 +15,4 @@ services:
             - CLOUDINARY_API_SECRET=w08QhP0L7adxXFECRsN6Ez13fFU
             - MONGO_URI=mongodb+srv://qwerty12:qwerty12@cluster0.cedcr.mongodb.net/unknown?retryWrites=true&w=majority
         ports:
-            - "80:80"
+            - "5000:5000"
