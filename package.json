@@ -1,8 +1,8 @@
 {
   "name": "unknown",
-  "author": "",
+  "author": "Suryasen Vishwakarma",
   "version": "1.0.0a",
-  "description": "",
+  "description": "Body Frist Project Backend",
   "main": "service.js",
   "scripts": {
     "dev": "nodemon service.js",
