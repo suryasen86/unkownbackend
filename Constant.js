@@ -111,7 +111,7 @@ TODO: module.exports = Object.freeze({
     status_warning_code: 314,
   
   
-    secret: "Tushar",
+    secret: "Suryasen",
   
     issuer: "baseNode",
   

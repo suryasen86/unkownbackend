@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
 
 
 app.get('/', (req, res) => {
-  return customError(Constants.statusissue_code,Constants.issue_msg,"Error",new Error("hello"), res);
+  res.send("Hello")
 
    
 })
