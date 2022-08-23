@@ -13,7 +13,7 @@ class AdminHelper {
                 }
                 else{
                      delete admin.user_pin
-                    let token=await generateToken({...admin},{})
+                    let token=await generateToken({...admin.dataValues},{})
 
                      
                     let resp={token,...admin.dataValues}

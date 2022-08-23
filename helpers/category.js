@@ -107,6 +107,32 @@ class catgeoryHelper {
         })
        
     }
+    async findByGenderAndAge(gender,from_age,to_age){
+        let categories=[]
+        categories=await CategoryPersistence.findByGenderAndAge(gender,from_age,to_age)
+        if(categories.length){
+            await Promise.all(
+                categories.map(async data => {
+                    if(data && data.subcat_ids?.length>0){
+                        let subcatArr=[]
+                        data.subcat_ids=data.subcat_ids.split(",")
+                         
+                        await Promise.all(
+                            data.subcat_ids.map(async element => {
+                                
+                                    let subCat=await SubcategoryHelper.getbyId(element)  
+                                    if(subCat) subcatArr.push(subCat)
+                            })
+                        )
+                        
+                        data.subcat_ids=subcatArr
+                    }
+    
+                })
+            )
+        }
+        return categories
+    }
 }
 
 module.exports =new catgeoryHelper()
