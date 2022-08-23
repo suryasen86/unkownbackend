@@ -10,14 +10,13 @@ class Category extends Sequelize.Model {
             },
             cat_name: {
                 type: DataTypes.STRING(50),
-                unique: true
             },
             cat_img: DataTypes.TEXT,
             cat_desc: DataTypes.STRING(300),
             age_from: DataTypes.STRING(100),
             age_to: DataTypes.STRING(100),
             gender: DataTypes.STRING(100),
-            disp_priority: DataTypes.INTEGER(1),
+            subcat_ids:DataTypes.STRING(100),
             is_active: DataTypes.INTEGER(1),
             created_by: DataTypes.STRING(50),
             updated_by: DataTypes.STRING(50),

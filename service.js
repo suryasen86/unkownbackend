@@ -49,10 +49,13 @@ app.get('/', (req, res) => {
 
 const responseProvider = require('./sys/middleware/responseProvider')
 app.use(responseProvider)
+
+
 //routers
-  
 app.use('/api/admin',require('./routers/admin'))
 app.use('/api/subcat',require('./routers/subcatgeory'))
+app.use('/api/category',require('./routers/category'))
+
 
 
   // catch 404 and forward to error handler

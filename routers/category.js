@@ -3,26 +3,77 @@ const RouteHandler = express.Router()
 
 const {customError} =require('../sys/utils/errorHander')
 const { validate } = require("../sys/middleware/validator")
-
-
+const {create,patch,idValidation}=require('../sys/validators/categoryValidationRules')
+const categoryHelper =require('../helpers/category')
 const Constant=require('../Constant')
+const {uploadtoserver} =require('../sys/utils/fileupload')
+RouteHandler.get('/',validate,async (req,res)=>{
+    try {   
+        let data=await categoryHelper.getAll()
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,"category get all",error,res)
+    }
+    
+})
+RouteHandler.get('/:id',idValidation(),validate,async (req,res)=>{
+    let {id}=req.params
+    try {
+      let data =await categoryHelper.getById(id) 
+      res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,"category specific",error,res)
+    }
+     
+})
+RouteHandler.post('/',create(),validate,async (req,res)=>{
+    let {user_id=1}=req
+    try {
+        let {cat_img}=req.body
+        if(cat_img){
+            let uploded=await uploadtoserver(cat_img)
+            req.body.cat_img=uploded.url
+            console.log(uploded)
+        }
+        req.body.created_by=user_id
+        let data=await categoryHelper.create(req.body)
 
-RouteHandler.get('/',async (req,res)=>{
-    res.send("select all")
-})
-RouteHandler.get('/:id',async (req,res)=>{
-    res.send("get specify category")
-})
-RouteHandler.post('/',async (req,res)=>{
-    res.send("created succes full")
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,"create category",error,res)
+    }
+     
 })
 
-RouteHandler.patch('/:id',async(req,res)=>{
-    res.send("patched success full")
+RouteHandler.patch('/:id',idValidation(),patch(),validate, async(req,res)=>{
+    let {user_id=1}=req
+    try {
+        let {id}=req.params
+        req.body.updated_by=user_id
+        let data = await categoryHelper.patch(id,req.body)
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,"create patch",error,res) 
+    }
 })
 
-RouteHandler.delete('/:id',async(req,res)=>{
-    res.send('deletd succesfully')
+RouteHandler.put('/:id',idValidation(),validate,async(req,res)=>{
+    let {user_id=1}=req
+    try {   
+        let {cat_img}=req.body
+        let {id}=req.params
+        if(cat_img){
+            let uploded=await uploadtoserver(cat_img)
+            req.body.cat_img=uploded.url
+            console.log(uploded)
+        }
+        req.body.updated_by=user_id
+        let data=await categoryHelper.update(id,req.body)
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,"update category",error,res)
+    }
+    
 })
 
 

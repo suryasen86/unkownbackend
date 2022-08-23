@@ -74,13 +74,13 @@ asyncHandler(async(req,res)=>{
         }   
         
         if(Object.keys(updateQuery).length==0){
-            return customError(Constant.statusissue_code,"Invalid Request","Subcategory delete",null,res)
+            return customError(Constant.statusissue_code,"Invalid Request","Subcategory update",null,res)
         }
         updateQuery.updated_by=updated_by
         let data=await subcatgeory.update(id,updateQuery)
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
     } catch (error) {
-        return customError(Constant.statusissue_code,error.message,"Subcategory delete",error,res)
+        return customError(Constant.statusissue_code,error.message,"Subcategory update",error,res)
     }
 })
 )
