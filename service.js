@@ -18,7 +18,6 @@ console.log("Drop and Resync with { force: false }");
 conn()
 
 const {customError} =require('./sys/utils/errorHander')
-  
 
 app.use(cors());
 
@@ -48,9 +47,12 @@ app.get('/', (req, res) => {
 
 
 
-
-
-
+const responseProvider = require('./sys/middleware/responseProvider')
+app.use(responseProvider)
+//routers
+  
+app.use('/api/admin',require('./routers/admin'))
+app.use('/api/subcat',require('./routers/subcatgeory'))
 
 
   // catch 404 and forward to error handler

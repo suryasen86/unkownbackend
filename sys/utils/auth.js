@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { reject } = require("../../Constant");
 
 const Constants = require(`../../Constant`);
 
@@ -8,11 +9,14 @@ const tokenIssuer = Constants.issuer;
 
 const logger = require("./logger");
 
-exports.generateToken = (userData, options) => {
-
-    const token = jwt.sign(userData, appSecret, {issuer: tokenIssuer});
+exports.generateToken = async(userData, options) => {
+     
+        const token =await jwt.sign(userData, appSecret, {issuer: tokenIssuer});
   
-    return token;
+    return token      
+    
+
+   
   
   };
   
