@@ -19,9 +19,11 @@ const verifyotp=()=>{
 const assignageandgender=()=>{
     return [
         isValidInteger('gender',1,1),
-        isValidInteger('from_age',1,3),
-        isValidInteger('to_age',1,3),
-      
+     
+       
+        body("to_age").optional(),
+        body("from_age").optional()
+        
     ]
 }
 

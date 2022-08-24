@@ -46,6 +46,7 @@ class UserHelper {
     }
 
     async getCategoryAndSubcategory(user_id){
+        return await categoryHelper.getAll()
         return new Promise(async (resolve,reject)=>{
             let user= await this.getUserById(user_id)
             if(!user){
