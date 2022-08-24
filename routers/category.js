@@ -7,7 +7,7 @@ const {create,patch,idValidation}=require('../sys/validators/categoryValidationR
 const categoryHelper =require('../helpers/category')
 const Constant=require('../Constant')
 const {uploadtoserver} =require('../sys/utils/fileupload')
-RouteHandler.get('/',validate,async (req,res)=>{
+RouteHandler.get('/',async (req,res)=>{
     try {   
         let data=await categoryHelper.getAll()
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
@@ -76,7 +76,7 @@ RouteHandler.put('/:id',idValidation(),validate,async(req,res)=>{
     
 })
 
-
+  
 
 
 module.exports = RouteHandler;

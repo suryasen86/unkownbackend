@@ -3,7 +3,6 @@ const SubcategoryHelper=require('../helpers/subcatgeory')
  
 class catgeoryHelper {
     async getAll(){
-
         let resp =await CategoryPersistence.getAll()
         if(resp.length){
             await Promise.all(
@@ -30,6 +29,7 @@ class catgeoryHelper {
         return resp
     }
     async create(incoming){
+        
         return  new Promise(async (resolve,reject)=>{
             let {subcat_ids}=incoming
             if (subcat_ids.length){

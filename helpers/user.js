@@ -1,6 +1,7 @@
 const UserPersistence=require('../persistence/user')
 const {generateToken} =require("../sys/utils/auth")
 const categoryHelper=require('./category')
+const {sendOtp}=require('../sys/utils/sendsms')
 class UserHelper {
     async getUserByMobile(mobile){
         return await UserPersistence.getUserByMobile(mobile)
@@ -9,12 +10,16 @@ class UserHelper {
         return await UserPersistence.getUserById(user_id)
     }
     async getOtp(incoming){
-        incoming.user_otp=9999
+        let otp=9999
+        incoming.user_otp=otp
         let user=await this.getUserByMobile(incoming.user_phone)
+        
         if(!user){
+            await sendOtp(incoming.user_phone,otp)
             return await UserPersistence.create(incoming)
         }   
         else{
+           await sendOtp(incoming.user_phone,otp)
             return await UserPersistence.update(incoming.user_phone,incoming)
         }
     }

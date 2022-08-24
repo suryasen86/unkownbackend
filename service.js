@@ -56,6 +56,7 @@ app.use('/api/admin',require('./routers/admin'))
 app.use('/api/subcat',require('./routers/subcatgeory'))
 app.use('/api/category',require('./routers/category'))
 app.use('/api/user',require('./routers/user'))
+app.use('/api/product',require('./routers/product'))
 
 
 

@@ -1,8 +1,8 @@
 {
   "name": "unknown",
-  "author": "",
+  "author": "Suryasen Vishwakarma",
   "version": "1.0.0a",
-  "description": "",
+  "description": "Body Frist Project Backend",
   "main": "service.js",
   "scripts": {
     "dev": "nodemon service.js",
@@ -11,6 +11,7 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.30.1",
     "cors": "^2.8.5",
@@ -18,6 +19,7 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "express-validator": "^6.14.2",
+    "fast-two-sms": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
     "mysql2": "^2.3.3",
