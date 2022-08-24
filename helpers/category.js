@@ -32,7 +32,7 @@ class catgeoryHelper {
         
         return  new Promise(async (resolve,reject)=>{
             let {subcat_ids}=incoming
-            if (subcat_ids.length){
+            if (subcat_ids?.length){
                  
                 subcat_ids.forEach(async element => {
                 let subcat=await SubcategoryHelper.getbyId(element)
@@ -108,6 +108,7 @@ class catgeoryHelper {
        
     }
     async findByGenderAndAge(gender,from_age,to_age){
+        console.log(gender,from_age,to_age)
         let categories=[]
         categories=await CategoryPersistence.findByGenderAndAge(gender,from_age,to_age)
         if(categories.length){
