@@ -55,5 +55,14 @@ RouteHandler.get('/getcatandsubcat',authoriseRequest,async(req,res)=>{
     }
 })
 
+RouteHandler.get('/products',authoriseRequest,async(req,res)=>{
+    try {
+        let {user_id}=req
+        let data=await UserHelper.getProducts(req.body)
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,`get Products user ${JSON.stringify(req.body)}`,error,res)
+    }
+})
 
 module.exports = RouteHandler;

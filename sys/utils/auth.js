@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { reject } = require("../../Constant");
 
 const Constants = require(`../../Constant`);
 
@@ -9,25 +8,25 @@ const tokenIssuer = Constants.issuer;
 
 const logger = require("./logger");
 
-exports.generateToken = async(userData, options) => {
-     
-        const token =await jwt.sign(userData, appSecret, {issuer: tokenIssuer});
-  
-    return token      
-    
+exports.generateToken = async (userData, options) => {
 
-   
-  
-  };
-  
- exports.verifyToken=async (token)=>{
+    const token = await jwt.sign(userData, appSecret, { issuer: tokenIssuer });
+
+    return token
+
+
+
+
+};
+
+exports.verifyToken = async (token) => {
     let decoded = false;
     try {
-        decoded = await jwt.verify(token, appSecret); 
+        decoded = await jwt.verify(token, appSecret);
     } catch (error) {
         logger.error("In verify token error occured while decoding token ", error);
-    
-    }  
+
+    }
     return decoded
 
- } 
+} 

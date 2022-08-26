@@ -2,6 +2,8 @@ const UserPersistence=require('../persistence/user')
 const {generateToken} =require("../sys/utils/auth")
 const categoryHelper=require('./category')
 const {sendOtp}=require('../sys/utils/sendsms')
+const answerPersistance=require('../persistence/answer')
+const productHelper=require('../helpers/product')
 class UserHelper {
     async getUserByMobile(mobile){
         return await UserPersistence.getUserByMobile(mobile)
@@ -58,6 +60,26 @@ class UserHelper {
                 resolve(category)
             }
         })
+    }
+    async getProducts(incoming){
+        let {answers} =incoming
+        let productKey =[]
+        let products=[]
+        console.log(answers)
+        let allProductsKeys=await answerPersistance.allProductsKeys(answers)
+        if(allProductsKeys.length){
+            for (let index = 0; index < allProductsKeys.length; index++) {
+               let element = allProductsKeys[index];
+               element =element.product_ids.split(',')
+               for (let index = 0; index < element.length; index++) {
+                const test = element[index];
+                productKey.push(test)
+               }
+
+            }
+             products=await productHelper.checkMultipleProductExistOrNot(productKey)
+        }
+        return products
     }
     
 }
