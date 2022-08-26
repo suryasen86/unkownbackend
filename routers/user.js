@@ -55,7 +55,7 @@ RouteHandler.get('/getcatandsubcat',authoriseRequest,async(req,res)=>{
     }
 })
 
-RouteHandler.get('/products',getProductForAnswer(),validate,authoriseRequest,async(req,res)=>{
+RouteHandler.post('/products',getProductForAnswer(),validate,authoriseRequest,async(req,res)=>{
     try {
         let {user_id}=req
         let data=await UserHelper.getProducts(req.body)

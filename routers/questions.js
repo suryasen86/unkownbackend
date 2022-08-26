@@ -7,7 +7,7 @@ const { validate } = require("../sys/middleware/validator")
 const {create} =require('../sys/validators/questionValidation')
 const Constant=require('../Constant')
 const questionsHelper=require('../helpers/questions')
-RouteHandler.get('/',async (req,res)=>{
+RouteHandler.post('/',async (req,res)=>{
     // 
    try {
     let data= await questionsHelper.getAll(req.body)
