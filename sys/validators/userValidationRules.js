@@ -26,5 +26,10 @@ const assignageandgender=()=>{
         
     ]
 }
+const getProductForAnswer=()=>{
+    return [
+        body('answers').isArray({min:1})
+    ]
+}
 
-module.exports = { getotp,verifyotp,assignageandgender}
+module.exports = { getotp,verifyotp,assignageandgender,getProductForAnswer}

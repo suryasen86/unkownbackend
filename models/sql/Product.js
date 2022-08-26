@@ -13,6 +13,7 @@ class Product extends Sequelize.Model {
             },
             product_img: DataTypes.TEXT,
             product_desc: DataTypes.STRING(300),
+            product_price:DataTypes.INTEGER(10),
             is_active: DataTypes.INTEGER(1),
             created_by: DataTypes.STRING(50),
             updated_by: DataTypes.STRING(50),

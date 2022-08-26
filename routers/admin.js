@@ -24,4 +24,12 @@ RouteHandler.post('/register',async (req,res)=>{
     res.send("otp")
 })
 
+RouteHandler.post('/cart-detail',async(req,res)=>{
+    try {
+        let admin =await AdminHelper.cartDetails(req.body)
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data:admin})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,"Admin cart details",error,res)
+    }
+})
 module.exports = RouteHandler;

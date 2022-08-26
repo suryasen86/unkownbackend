@@ -6,7 +6,7 @@ const { validate } = require("../sys/middleware/validator")
 const {generatePassHash,compareHash}=require('../sys/utils')
 const {authoriseRequest} =require('../sys/middleware/authorisation')
 const Constant=require('../Constant')
-const {getotp,verifyotp,assignageandgender} =require('../sys/validators/userValidationRules')
+const {getotp,verifyotp,assignageandgender,getProductForAnswer} =require('../sys/validators/userValidationRules')
 const UserHelper=require('../helpers/user')
 RouteHandler.post('/login',async (req,res)=>{
     res.send("Login")
@@ -55,7 +55,7 @@ RouteHandler.get('/getcatandsubcat',authoriseRequest,async(req,res)=>{
     }
 })
 
-RouteHandler.get('/products',authoriseRequest,async(req,res)=>{
+RouteHandler.get('/products',getProductForAnswer(),validate,authoriseRequest,async(req,res)=>{
     try {
         let {user_id}=req
         let data=await UserHelper.getProducts(req.body)
@@ -64,5 +64,18 @@ RouteHandler.get('/products',authoriseRequest,async(req,res)=>{
         return customError(Constant.statusissue_code,error.message,`get Products user ${JSON.stringify(req.body)}`,error,res)
     }
 })
+RouteHandler.post('/cart',authoriseRequest,async(req,res)=>{
+    try {
+        let {user_id}=req
+        req.body.user_id=user_id
+        let data=await UserHelper.createCart(req.body)
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+    } catch (error) {
+        return customError(Constant.statusissue_code,error.message,`get Products user ${JSON.stringify(req.body)}`,error,res)
+    }
+})
+
+
+
 
 module.exports = RouteHandler;
