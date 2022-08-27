@@ -1,25 +1,24 @@
 const Sequelize = require('sequelize');
 
-class Product extends Sequelize.Model {
+class Answer extends Sequelize.Model {
     static init(sequelize, DataTypes) {
         return super.init({
-            product_id: {
+            answer_id: {
                 type: Sequelize.INTEGER(11),
                 autoIncrement: true,
                 primaryKey: true,
             },
-            product_name: {
-                type: DataTypes.STRING(50),
+            answer_val: {
+                type: DataTypes.STRING(200),
             },
-            product_img: DataTypes.TEXT,
-            product_desc: DataTypes.STRING(300),
-            product_price:DataTypes.INTEGER(10),
+            questions_id: DataTypes.INTEGER(5),
+            product_ids: DataTypes.STRING(100),
             is_active: DataTypes.INTEGER(1),
             created_by: DataTypes.STRING(50),
             updated_by: DataTypes.STRING(50),
         },
             {
-                sequelize, freezeTableName: true, tableName: 'mst_product',
+                sequelize, freezeTableName: true, tableName: 'mst_answer',
                 defaultScope: {
                     attributes: {
                         exclude: [
@@ -39,4 +38,4 @@ class Product extends Sequelize.Model {
     }
 }
 
-module.exports = Product;
+module.exports = Answer;

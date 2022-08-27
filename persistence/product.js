@@ -1,5 +1,7 @@
 const Constant = require("../Constant")
 const {Product} = require("../models/sql/")
+const { Category,sequelizeCon } = require('../models/sql/')
+const sequelize = require("sequelize");
 const {uploadtoserver}=require('../sys/utils/fileupload')
 class productPersistence{
     async create(incoming){
@@ -28,6 +30,17 @@ class productPersistence{
                 product_id:id
             }
         })
+    }
+    async getBulkProductsWithIds(product_ids,is_active){
+        let query = `SELECT * FROM mst_product  where product_id in (${product_ids}) `
+        if(is_active) query += ` is_active=${is_active}`
+        const resData = await sequelizeCon.query(query, {
+
+
+            type: sequelize.QueryTypes.SELECT, raw: true
+
+        });
+        return resData
     }
 }
 module.exports =new productPersistence

@@ -16,6 +16,20 @@ class productHelper{
     async update(incoming,id){
         return await this.patch(incoming,id)
     }
+    async checkMultipleProductExistOrNot(product_ids){
+        let arr=[]
+        let allProducts=await this.getAll()
+        for (let index = 0; index < product_ids.length; index++) {
+            const element = product_ids[index];
+            let product=allProducts.find(e=>e.product_id==element)
+            if(!product)throw new Error(`Product Not Found with error ${element}`)
+            if(product)arr.push(product)
+        }
+        return arr
+    }
+    async getBulkProductsWithIds(product_ids){
+        return await productPersistence.getBulkProductsWithIds(product_ids)
+    }
 }
 
 module.exports=new productHelper()
