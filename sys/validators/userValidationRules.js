@@ -31,5 +31,22 @@ const getProductForAnswer=()=>{
         body('answers').isArray({min:1})
     ]
 }
-
-module.exports = { getotp,verifyotp,assignageandgender,getProductForAnswer}
+const createCart=()=>{
+    return [
+        body('cart_items').isArray({min:1}).custom((value ) => {
+           
+            value.forEach(element => {
+                if(!element.product_id){
+                    throw new Error("Invalid Product Id")
+                }
+                if(!element.qty){
+                    throw new Error(`Invalid Qty `)
+                }
+                if(typeof(element.product_id) != 'number') throw new Error(`Please Provide valid Product id`)
+                if(typeof(element.qty) != 'number') throw new Error(`Please Provide valid qty`)
+            })  
+            return true
+        })
+    ]
+}
+module.exports = { getotp,verifyotp,assignageandgender,getProductForAnswer,createCart}
