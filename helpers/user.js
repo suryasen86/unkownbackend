@@ -51,7 +51,7 @@ class UserHelper {
     }
 
     async getCategoryAndSubcategory(user_id) {
-        return await categoryHelper.getAll()
+         
         return new Promise(async (resolve, reject) => {
             let user = await this.getUserById(user_id)
             if (!user) {
@@ -81,6 +81,7 @@ class UserHelper {
             }
             products = await productHelper.checkMultipleProductExistOrNot(productKey)
         }
+       
         return products
     }
     async createCart(incoming) {

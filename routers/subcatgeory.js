@@ -34,11 +34,12 @@ RouteHandler.post('/',create(),validate,async (req,res)=>{
         if(subcat_img){
             let uploded=await uploadtoserver(subcat_img)
             console.log(uploded)
-            req.body.subcat_img=uploded.url
+            req.body.subcat_img=uploded?.url
         } 
         let data= await subcatgeory.create(req.body)
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
     } catch (error) {
+        console.log(error)
         return customError(Constant.statusissue_code,error.message,"Subcategory Create",error,res)
     }
      

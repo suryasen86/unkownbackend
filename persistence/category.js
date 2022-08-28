@@ -25,11 +25,14 @@ class CategoryPersistence {
         if(gender){
             query += ` and gender =${gender}`
         }
-        if(from_age){
-            query += ` and age_from >= ${from_age}`
+        if(from_age && to_age){
+            query += ` and age_from >= ${from_age}  and age_to <= ${to_age}`
         }
-        if (to_age){
-            query += ` and age_to <= ${to_age}` 
+        if (from_age && !to_age ){
+            query += ` and age_from >= ${from_age}` 
+        }
+        if (!from_age && to_age ){
+            query += ` and age_to >= ${to_age}` 
         }
         const resData = await sequelizeCon.query(query, {
 
