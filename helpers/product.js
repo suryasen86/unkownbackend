@@ -25,7 +25,8 @@ class productHelper{
             if(!product)throw new Error(`Product Not Found with error ${element}`)
             if(product)arr.push(product)
         }
-        return arr
+        
+        return [...new Set(arr)]
     }
     async getBulkProductsWithIds(product_ids){
         return await productPersistence.getBulkProductsWithIds(product_ids)

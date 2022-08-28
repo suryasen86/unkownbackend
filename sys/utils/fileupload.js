@@ -9,7 +9,8 @@ uploadservice.uploadtoserver = async (filedata) => {
             });
             resolve(uploadData)
         } catch (error) {
-            reject(error)
+             
+            resolve(null)
         }
     })
    

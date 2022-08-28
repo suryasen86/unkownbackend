@@ -8,6 +8,7 @@ class questionsPersistence{
         return await Questions.create(incoming)
     }
     async getAll(incoming){
+        delete incoming.answers
         let {is_active,cat_id,subcat_id,questions_id}=incoming
         
            
