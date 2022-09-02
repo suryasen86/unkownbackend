@@ -7,7 +7,7 @@ class productPersistence{
     async create(incoming){
         incoming.is_active=Constant.active
         let uploaded=await uploadtoserver(incoming.product_img)
-        incoming.product_img=uploaded.url
+        incoming.product_img=uploaded?.url
         return await Product.create(incoming)
     }
     async getAll(){

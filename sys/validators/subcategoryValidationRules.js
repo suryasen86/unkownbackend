@@ -8,6 +8,9 @@ const create = () => {
         
         isValidString('subcat_desc', 5, 300),
         isValidString('subcat_img'),
+        isValidString('product_img'),
+        isValidString('poster_img'),
+        isValidString('promo_img'),   
     ]
 }
 const patch=()=>{
