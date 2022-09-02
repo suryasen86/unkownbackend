@@ -29,10 +29,25 @@ RouteHandler.get('/:id',idValidation(),validate,async (req,res)=>{
 RouteHandler.post('/',create(),validate,async (req,res)=>{
     let {user_id=1}=req
     try {
-        let {cat_img}=req.body
+        let {cat_img,product_img,poster_img,promo_img}=req.body
         if(cat_img){
             let uploded=await uploadtoserver(cat_img)
             req.body.cat_img=uploded.url
+            console.log(uploded)
+        }
+        if(product_img){
+            let uploded=await uploadtoserver(product_img)
+            req.body.product_img=uploded.url
+            console.log(uploded)
+        }
+        if(poster_img){
+            let uploded=await uploadtoserver(poster_img)
+            req.body.poster_img=uploded.url
+            console.log(uploded)
+        }
+        if(promo_img){
+            let uploded=await uploadtoserver(promo_img)
+            req.body.promo_img=uploded.url
             console.log(uploded)
         }
         req.body.created_by=user_id
