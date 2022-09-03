@@ -27,6 +27,8 @@ app.use(bodyParser.json()); // support json encoded bodies
 
 app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
 
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+app.use(express.json({ limit: "50mb" }));
 
 
 
