@@ -1,11 +1,22 @@
 
 
-const {Subcategory}=require('../models/sql/')
+const {Subcategory,sequelizeCon}=require('../models/sql/')
 const Constant=require('../Constant')
+const sequelize = require("sequelize");
 
 class subcatgeoryPersistence{
-   async getall(){
-    return await Subcategory.findAll();
+   async getall(incoming){
+    let {is_active}=incoming
+    let query =`select * from mst_subcat `
+    if (is_active && is_active==1) query += ` where  is_active =${is_active}`
+    if (is_active && is_active==0) query += ` where  is_active =${is_active}`
+    const resData = await sequelizeCon.query(query, {
+
+
+        type: sequelize.QueryTypes.SELECT, raw: true
+
+    });
+    return resData
    }
    async create(data){
     data.is_active=1

@@ -4,8 +4,8 @@ class subcatgeoryHelper{
     async create(incoming){
         return await subcatgeoryPersistence.create(incoming)
     }   
-    async getAll(){
-        return await subcatgeoryPersistence.getall()
+    async getAll(incoming){
+        return await subcatgeoryPersistence.getall(incoming)
     }
     async getbyId(id){
         return await subcatgeoryPersistence.getbyId(id)
