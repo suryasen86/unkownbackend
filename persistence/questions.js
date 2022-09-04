@@ -29,5 +29,9 @@ class questionsPersistence{
         });
         return resData
     }
+    async patch(incoming,id){
+        
+        await Questions.update(incoming, { where: { questions_id:id  } });
+    }
 }
 module.exports =new questionsPersistence()

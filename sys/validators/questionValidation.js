@@ -32,7 +32,7 @@ const create = () => {
 const patch = () => {
     return [
 
-
+        isValidInteger('is_active',1,1),
 
     ]
 }

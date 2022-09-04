@@ -38,7 +38,7 @@ class questionsHelper {
     }
 
     async patch(incoming, id) {
-
+        return await questionsPersistence.patch(incoming,id)
     }
     async update(incoming, id) {
 

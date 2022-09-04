@@ -1,6 +1,7 @@
 const express = require('express')
 ROOT_DIR = __dirname + '/';
 const app = express()
+const fileUpload = require("express-fileupload");
 const db = require('./models/sql');
 const dotenv=require('dotenv');
 dotenv.config({path:'./.env'})
@@ -20,15 +21,13 @@ conn()
 const {customError} =require('./sys/utils/errorHander')
 
 app.use(cors());
-
+app.use(fileUpload());
 const bodyParser = require('body-parser');
 
+ 
 app.use(bodyParser.json()); // support json encoded bodies
 
-app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
-
-
-
+app.use(bodyParser.urlencoded({ extended: false })); 
 
 
 
