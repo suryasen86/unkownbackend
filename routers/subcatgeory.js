@@ -28,30 +28,11 @@ RouteHandler.get('/:id',async (req,res)=>{
 })
 RouteHandler.post('/',create(),validate,async (req,res)=>{
     let {user_id=1}=req
-    let {subcat_img,product_img,poster_img,promo_img}=req.body
+    
     try {   
         req.body.created_by=user_id
-        if(subcat_img){
-            let uploded=await uploadtoserver(subcat_img)
-            console.log(uploded)
-            req.body.subcat_img=uploded?.url
-        } 
-        if(product_img){
-            let uploded=await uploadtoserver(product_img)
-            req.body.product_img=uploded?.url
-            console.log(uploded)
-        }
-        if(poster_img){
-            let uploded=await uploadtoserver(poster_img)
-            req.body.poster_img=uploded?.url
-            console.log(uploded)
-        }
-        if(promo_img){
-            let uploded=await uploadtoserver(promo_img)
-            req.body.promo_img=uploded?.url
-            console.log(uploded)
-        }
-        let data= await subcatgeory.create(req.body)
+        
+        let data= await subcatgeory.create(req)
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
     } catch (error) {
         console.log(error)

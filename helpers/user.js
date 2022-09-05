@@ -6,7 +6,8 @@ const answerPersistance = require('../persistence/answer')
 const productHelper = require('../helpers/product')
 const cartPersistence = require('../persistence/cart')
 const voucher_codes = require('voucher-code-generator');
-
+const { getOtp } = require('../sys/utils/getotp')
+ 
 class UserHelper {
     async getUserByMobile(mobile) {
         return await UserPersistence.getUserByMobile(mobile)
@@ -15,7 +16,7 @@ class UserHelper {
         return await UserPersistence.getUserById(user_id)
     }
     async getOtp(incoming) {
-        let otp = 9999
+        let otp =getOtp()
         incoming.user_otp = otp
         let user = await this.getUserByMobile(incoming.user_phone)
 
@@ -81,6 +82,7 @@ class UserHelper {
             }
             products = await productHelper.checkMultipleProductExistOrNot(productKey)
         }
+        
        
         return products
     }

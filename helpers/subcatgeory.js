@@ -1,11 +1,22 @@
 
 const subcatgeoryPersistence=require('../persistence/subcatgeory')
+const {getimgdata}=require('../sys/utils/fileupload')
 class subcatgeoryHelper{
     async create(incoming){
         return await subcatgeoryPersistence.create(incoming)
     }   
     async getAll(incoming){
-        return await subcatgeoryPersistence.getall(incoming)
+        let finalresponse=[]
+        let data= await subcatgeoryPersistence.getall(incoming)
+        for (let index = 0; index < data.length; index++) {
+            let element = data[index];
+            element.subcat_img=await getimgdata(element.subcat_img,'/subcatgoery/')
+            element.poster_img=await getimgdata(element.poster_img,'/subcatgoery/')
+            element.promo_img=await getimgdata(element.promo_img,'/subcatgoery/')
+            element.product_img=await getimgdata(element.product_img,'/subcatgoery/')
+            finalresponse.push(element)
+        }
+        return finalresponse
     }
     async getbyId(id){
         return await subcatgeoryPersistence.getbyId(id)

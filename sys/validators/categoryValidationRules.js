@@ -8,13 +8,12 @@ const create = () => {
         isValidString('cat_desc', 5, 300),
         isValidInteger('age_from',1,100),
         isValidInteger('age_to',1,100),
-        isValidString('cat_img'),
-        isValidString('product_img'),
-        isValidString('poster_img'),
-        isValidString('promo_img'),
+        // isValidString('cat_img'),
+        // isValidString('product_img'),
+        // isValidString('poster_img'),
+        // isValidString('promo_img'),
         isValidInteger('gender',1,1),
-        body('subcat_ids').optional()
-            .isArray({ min: 1 }).withMessage("Please send in array with 1 item minimum")
+        isValidString('subcat_ids').optional()
 ]
 }
 const patch=()=>{

@@ -1,11 +1,19 @@
 const productPersistence=require('../persistence/product')
+const {getimgdata}=require('../sys/utils/fileupload')
 class productHelper{
    async create(incoming){
         
        return await productPersistence.create(incoming)
     }
     async  getAll(){
-        return await productPersistence.getAll()
+        let finalResponse=[]
+        let data=await productPersistence.getAll()
+            for (let index = 0; index < data.length; index++) {
+                let element = data[index];
+                element.product_img=await getimgdata(element.product_img,'/products/')
+                finalResponse.push(element)
+            }
+        return finalResponse
     }
     async getProductById(id){
         return await productPersistence.getProductById(id)

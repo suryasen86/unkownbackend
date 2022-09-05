@@ -11,7 +11,6 @@ RouteHandler.get('/',async (req,res)=>{
 
    let {user_id=1}=req
     try {
-        
         let data=await productHelper.getAll()
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data}) 
     } catch (error) {
@@ -31,7 +30,7 @@ RouteHandler.post('/',create(),validate,async (req,res)=>{
     let {user_id=1}=req
     try {
         req.body.created_by=user_id
-        let data=await productHelper.create(req.body)
+        let data=await productHelper.create(req)
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data}) 
     } catch (error) {
         return customError(Constant.statusissue_code,error.message,"product create",error,res)

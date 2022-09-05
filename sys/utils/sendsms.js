@@ -15,15 +15,17 @@ smsService.sendOtp = async ( mobile, otp ) => {
         try {
             
             let body={
-                authorization:process.env.SMS_AUTHORIZATION,
-                 
-                message:`Your otp is ${otp}`,
-                numbers:[mobile],
-                method:"GET"
+               
+                orgToken:`luC6yWOnS3yE8MzHyjCiWw`,
+                message: `Please enter OTP ${otp} to verify your mobile on bodyfirst.in`,
+                to:mobile,
+                campaignName: "Test_New",
+                gatewayId: "27537f8f2ac34d7380fc4f618113af4b",
+                approvedTemplateId: "1007711035485931566"
                
             }
-            // let {data}= await axios.get(`${process.env.SMS_PROVIDER_HOST}?authorization=${process.env.SMS_AUTHORIZATION}&variables_values=${otp}&numbers=${mobile}&flash=0`)
-            const  data= await fast2sms.sendMessage({...body})
+            let {data}= await axios.post(`https://app.wigzo.com/rest/v1/sms/send`,body)
+           
             console.log(data)
             resolve(data)
         } catch (error) {

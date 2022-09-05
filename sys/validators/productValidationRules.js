@@ -7,7 +7,7 @@ const create = () => {
         isValidString('product_name', 2, 100),
         
         isValidString('product_desc', 5, 300),
-        isValidString('product_img'),
+        
     ]
 }
 const patch=()=>{

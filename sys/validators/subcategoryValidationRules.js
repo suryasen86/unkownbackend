@@ -7,11 +7,7 @@ const create = () => {
         isValidString('subcat_name', 2, 100),
         
         isValidString('subcat_desc', 5, 300),
-        isValidString('subcat_img'),
-        isValidString('product_img'),
-        isValidString('poster_img'),
-        isValidString('promo_img'),   
-    ]
+        ]
 }
 const patch=()=>{
     return[
