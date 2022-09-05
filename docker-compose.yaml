@@ -14,5 +14,9 @@ services:
             - CLOUDINARY_API_KEY=371947551446546
             - CLOUDINARY_API_SECRET=w08QhP0L7adxXFECRsN6Ez13fFU
             - MONGO_URI=mongodb+srv://qwerty12:qwerty12@cluster0.cedcr.mongodb.net/unknown?retryWrites=true&w=majority
+            - AWS_KEY=AKIA33CNIG6DBJRODZX3
+            - AWS_SECRET=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
+            - AWS_BUCKET=body-frist
+            - AWS_BUCKET_REGION=ap-south-1
         ports:
             - "5000:5000"

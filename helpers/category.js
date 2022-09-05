@@ -124,9 +124,9 @@ class catgeoryHelper {
                         let subcatArr = []
                         data.subcat_ids = data.subcat_ids.split(",")
                         data.cat_img = await getimgdata(data.cat_img, '/catgoery/')
-                    data.poster_img = await getimgdata(data.poster_img, '/catgoery/')
-                    data.promo_img = await getimgdata(data.promo_img, '/catgoery/')
-                    data.product_img = await getimgdata(data.product_img, '/catgoery/')
+                        data.poster_img = await getimgdata(data.poster_img, '/catgoery/')
+                        data.promo_img = await getimgdata(data.promo_img, '/catgoery/')
+                        data.product_img = await getimgdata(data.product_img, '/catgoery/')
                         await Promise.all(
                             data.subcat_ids.map(async element => {
 
