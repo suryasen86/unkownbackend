@@ -15,7 +15,7 @@ class Category extends Sequelize.Model {
             product_img:DataTypes.TEXT,
             poster_img:DataTypes.TEXT,
             promo_img:DataTypes.TEXT,
-            cat_desc: DataTypes.STRING(300),
+            cat_desc: DataTypes.TEXT,
             age_from: DataTypes.STRING(100),
             age_to: DataTypes.STRING(100),
             gender: DataTypes.STRING(100),

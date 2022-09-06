@@ -12,7 +12,7 @@ class Subcategory extends Sequelize.Model {
                 type:DataTypes.STRING(50),
               
             },
-            subcat_desc: DataTypes.STRING(300),
+            subcat_desc: DataTypes.TEXT,
             subcat_img: DataTypes.TEXT,
             product_img:DataTypes.TEXT,
             poster_img:DataTypes.TEXT,
