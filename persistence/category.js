@@ -47,11 +47,20 @@ class CategoryPersistence {
         return await Category.create(body)
     }
     async getById(id) {
-        return await Category.findOne({
-            where: {
-                cat_id: id
-            }
-        })
+        let newQueery = ` SELECT * FROM db_unknown.mst_category where cat_id = ${id}`
+
+        const resData = await sequelizeCon.query(newQueery, {
+
+
+            type: sequelize.QueryTypes.SELECT, raw: true
+
+        });
+        if(resData.length){
+            return resData[0]
+        }else{
+            return false
+        }
+        
     }
     async update(id, incoming) {
         return await Category.update(incoming, { where: { cat_id: id } });

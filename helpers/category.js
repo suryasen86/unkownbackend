@@ -62,6 +62,12 @@ class catgeoryHelper {
     async getById(id) {
         let data
         data = await CategoryPersistence.getById(id)
+       if(data){
+        data.cat_img = await getimgdata(data.cat_img, '/catgoery/')
+        data.poster_img = await getimgdata(data.poster_img, '/catgoery/')
+        data.promo_img = await getimgdata(data.promo_img, '/catgoery/')
+        data.product_img = await getimgdata(data.product_img, '/catgoery/')
+       }
         if (data && data.subcat_ids?.length > 0) {
             let subcatArr = []
             data.subcat_ids = data.subcat_ids.split(",")

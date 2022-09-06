@@ -19,7 +19,12 @@ class subcatgeoryHelper{
         return finalresponse
     }
     async getbyId(id){
-        return await subcatgeoryPersistence.getbyId(id)
+        let subcatgeory= await subcatgeoryPersistence.getbyId(id)
+        subcatgeory.subcat_img=await getimgdata(subcatgeory.subcat_img,'/subcatgoery/')
+        subcatgeory.poster_img=await getimgdata(subcatgeory.poster_img,'/subcatgoery/')
+        subcatgeory.promo_img=await getimgdata(subcatgeory.promo_img,'/subcatgoery/')
+        subcatgeory.product_img=await getimgdata(subcatgeory.product_img,'/subcatgoery/')
+        return subcatgeory
     }
     async patch(id,is_active){
         return new Promise( async(resolve,reject)=>{
