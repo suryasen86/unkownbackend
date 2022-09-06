@@ -20,6 +20,7 @@ class User extends Sequelize.Model {
         age_id:DataTypes.STRING(45),
         user_pin: DataTypes.STRING(250),
         is_privacy:DataTypes.INTEGER(1),
+        age_id:DataTypes.STRING(45),
         role_id: DataTypes.INTEGER(2),
         is_active: DataTypes.INTEGER(1),
         created_by: DataTypes.STRING(50),
