@@ -61,6 +61,7 @@ class CategoryPersistence {
         let newQueery = `SELECT DISTINCT mst_category.cat_id as aw, 
         mst_category.* FROM db_unknown.mst_category inner join map_category_age on 
         mst_category.cat_id= map_category_age.cat_id where mst_category.is_active =1 and gender in (2,${gender})
+        and map_category_age.age_id = ${age_id}
         `
 
         const resData = await sequelizeCon.query(newQueery, {

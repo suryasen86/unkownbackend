@@ -19,11 +19,12 @@ RouteHandler.post('/',async (req,res)=>{
 RouteHandler.get('/:id',async (req,res)=>{
     res.send("get specify category")
 })
-RouteHandler.post('/',create(),validate,async (req,res)=>{
+RouteHandler.post('/create',create(),validate,async (req,res)=>{
     let {user_id=1}=req
         try {
             let incoming=req.body
             incoming.user_id=user_id
+            // return res.send(req.body)
             if(!incoming.cat_id && !incoming.subcat_id){
                  
                 return customError(Constant.statusissue_code,`Please specify category or subcatgeory`,"question creation",null,res)  
