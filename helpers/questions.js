@@ -15,7 +15,7 @@ class questionsHelper {
         for (let index = 0; index < answers.length; index++) {
             let {option,products_ids} = answers[index];
             products_ids=products_ids.map((e)=>e.value)
-            let answerCreate=await answerPersistence.create({
+            await answerPersistence.create({
                 answer_val:option,
                 questions_id:questionCreate.questions_id,
                 product_ids:products_ids.toString(),

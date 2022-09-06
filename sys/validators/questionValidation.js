@@ -7,7 +7,7 @@ const create = () => {
         isValidString("question"),
         body('cat_id').isInt().optional(),
         body('subcat_id').isInt().optional(),
-        body('answers').exists().isArray({ min: 1, max: 10 }).withMessage("Please give valid Answer  with Products Ids and Optioms")
+        body('answers').exists().isArray({ min: 1, max: 50 }).withMessage("Please give valid Answer  with Products Ids and Optioms")
         .custom((value ) => {
            
             value.forEach(element => {
