@@ -120,19 +120,23 @@ class catgeoryHelper {
 
     }
     async findByGenderAndAge(gender, from_age, to_age,age_id) {
-        console.log(gender, from_age, to_age)
+        
         let categories = []
         categories = await CategoryPersistence.findByGenderAndAge(gender, from_age, to_age,age_id)
+       
         if (categories.length) {
+           
             await Promise.all(
                 categories.map(async data => {
+                   
+                    data.cat_img = await getimgdata(data.cat_img, '/catgoery/')
+                    data.poster_img = await getimgdata(data.poster_img, '/catgoery/')
+                    data.promo_img = await getimgdata(data.promo_img, '/catgoery/')
+                    data.product_img = await getimgdata(data.product_img, '/catgoery/')
                     if (data && data.subcat_ids?.length > 0) {
                         let subcatArr = []
                         data.subcat_ids = data.subcat_ids.split(",")
-                        data.cat_img = await getimgdata(data.cat_img, '/catgoery/')
-                        data.poster_img = await getimgdata(data.poster_img, '/catgoery/')
-                        data.promo_img = await getimgdata(data.promo_img, '/catgoery/')
-                        data.product_img = await getimgdata(data.product_img, '/catgoery/')
+             
                         await Promise.all(
                             data.subcat_ids.map(async element => {
 
@@ -142,6 +146,7 @@ class catgeoryHelper {
                         )
 
                         data.subcat_ids = subcatArr
+                        console.log(data)
                     }
 
                 })
