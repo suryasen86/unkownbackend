@@ -58,8 +58,17 @@ RouteHandler.get('/getcatandsubcat',authoriseRequest,async(req,res)=>{
 RouteHandler.post('/products',getProductForAnswer(),validate,authoriseRequest,async(req,res)=>{
     try {
         let {user_id}=req
+        let finalResponse=[]
+        
         let data=await UserHelper.getProducts(req.body)
-        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
+        if(data.length){
+            for (let index = 0; index < data.length; index++) {
+                const element = data[index];
+                if(element.is_active==1) finalResponse.push(element)
+                
+            }
+        }
+        res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data:finalResponse})
     } catch (error) {
         return customError(Constant.statusissue_code,error.message,`get Products user ${JSON.stringify(req.body)}`,error,res)
     }
