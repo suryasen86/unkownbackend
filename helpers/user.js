@@ -56,12 +56,13 @@ class UserHelper {
          
         return new Promise(async (resolve, reject) => {
             let user = await this.getUserById(user_id)
+            console.log(user)
             if (!user) {
                 reject(new Error("Invalid User"))
             }
             else {
                 let { gender, from_age, to_age ,age_id} = user
-                let category = await categoryHelper.findByGenderAndAge(gender, from_age, to_age)
+                let category = await categoryHelper.findByGenderAndAge(gender, from_age, to_age,age_id)
                 resolve(category)
             }
         })
