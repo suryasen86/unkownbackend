@@ -37,7 +37,7 @@ class catgeoryHelper {
     async create(incoming) {
 
         return new Promise(async (resolve, reject) => {
-            let { subcat_ids } = incoming.body
+            let { subcat_ids ,age_ids} = incoming.body
             if (subcat_ids?.length) {
                 subcat_ids = subcat_ids.split(',')
                 subcat_ids.forEach(async element => {
@@ -48,7 +48,13 @@ class catgeoryHelper {
                 });
                 incoming.body.subcat_ids = subcat_ids.toString();
             }
-            resolve(await CategoryPersistence.create(incoming))
+            let  category=await CategoryPersistence.create(incoming)
+            if(age_ids?.length){
+                age_ids=age_ids.split(',')
+                await CategoryPersistence.CatgeoryAndAge(category.cat_id,age_ids)
+            }
+
+            resolve(category)
 
         })
 
@@ -113,10 +119,10 @@ class catgeoryHelper {
         })
 
     }
-    async findByGenderAndAge(gender, from_age, to_age) {
+    async findByGenderAndAge(gender, from_age, to_age,age_id) {
         console.log(gender, from_age, to_age)
         let categories = []
-        categories = await CategoryPersistence.findByGenderAndAge(gender, from_age, to_age)
+        categories = await CategoryPersistence.findByGenderAndAge(gender, from_age, to_age,age_id)
         if (categories.length) {
             await Promise.all(
                 categories.map(async data => {

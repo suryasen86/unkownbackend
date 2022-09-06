@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
-class Category extends Sequelize.Model {
+class CatgeoryAndAge extends Sequelize.Model {
     static init(sequelize, DataTypes) {
         return super.init({
-            cat_id: {
+            cat_age_id: {
                 type: Sequelize.INTEGER(11),
                 autoIncrement: true,
                 primaryKey: true,
@@ -11,19 +11,15 @@ class Category extends Sequelize.Model {
             cat_name: {
                 type: DataTypes.STRING(50),
             },
-            cat_img: DataTypes.TEXT,
-            product_img:DataTypes.TEXT,
-            poster_img:DataTypes.TEXT,
-            promo_img:DataTypes.TEXT,
-            cat_desc: DataTypes.TEXT,
-            gender: DataTypes.STRING(100),
-            subcat_ids:DataTypes.STRING(100),
+            
+            cat_id: DataTypes.INTEGER(10),
+            age_id:DataTypes.INTEGER(10),
             is_active: DataTypes.INTEGER(1),
             created_by: DataTypes.STRING(50),
             updated_by: DataTypes.STRING(50),
         },
             {
-                sequelize, freezeTableName: true, tableName: 'mst_category',
+                sequelize, freezeTableName: true, tableName: 'map_category_age',
                 defaultScope: {
                     attributes: {
                         exclude: [
@@ -43,4 +39,4 @@ class Category extends Sequelize.Model {
     }
 }
 
-module.exports = Category;
+module.exports = CatgeoryAndAge;

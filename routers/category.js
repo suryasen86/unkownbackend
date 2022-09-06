@@ -33,6 +33,7 @@ RouteHandler.post('/',create(),validate,async (req,res)=>{
     
         req.body.created_by=user_id
         let data=await categoryHelper.create(req)
+        return res.send(req.body)
 
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
     } catch (error) {

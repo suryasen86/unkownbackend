@@ -48,6 +48,7 @@ class UserHelper {
         })
     }
     async assignAgeAndGender(incoming, id) {
+        console.log(incoming)
         return await UserPersistence.updateById(incoming, id)
     }
 
@@ -59,7 +60,7 @@ class UserHelper {
                 reject(new Error("Invalid User"))
             }
             else {
-                let { gender, from_age, to_age } = user
+                let { gender, from_age, to_age ,age_id} = user
                 let category = await categoryHelper.findByGenderAndAge(gender, from_age, to_age)
                 resolve(category)
             }

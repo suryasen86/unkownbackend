@@ -6,8 +6,8 @@ const create = () => {
     return [
         isValidString('cat_name', 2, 50),
         isValidString('cat_desc', 5, 3000),
-        isValidInteger('age_from',1,100),
-        isValidInteger('age_to',1,100),
+        isValidString('age_ids',1,100),
+       
         // isValidString('cat_img'),
         // isValidString('product_img'),
         // isValidString('poster_img'),
