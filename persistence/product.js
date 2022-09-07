@@ -21,9 +21,9 @@ class productPersistence{
          
     }
     async getAll(incoming){
-        let {is_active}=incoming
+         
         let query = `SELECT * FROM mst_product  `
-        if(is_active==1) query += 'where is_active = 1'
+        if(incoming?.is_active && incoming?.is_active==1) query += 'where is_active = 1'
         const resData = await sequelizeCon.query(query, {
 
 
