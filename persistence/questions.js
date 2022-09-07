@@ -12,7 +12,7 @@ class questionsPersistence{
         let {is_active=[1,0] ,cat_id,subcat_id,questions_id}=incoming
         
            
-        let query = `SELECT mst_questions.*  FROM db_unknown.mst_questions  where is_active in (${is_active})`
+        let query = `SELECT mst_questions.*  FROM test.mst_questions  where is_active in (${is_active})`
         // if(Object.keys(incoming).length>0){
         //     query += ` where`
         // }

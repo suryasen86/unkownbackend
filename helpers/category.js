@@ -3,9 +3,9 @@ const SubcategoryHelper = require('../helpers/subcatgeory')
 
 const { getimgdata } = require('../sys/utils/fileupload')
 class catgeoryHelper {
-    async getAll() {
+    async getAll(incoming) {
         let finalResponse = []
-        let resp = await CategoryPersistence.getAll()
+        let resp = await CategoryPersistence.getAll(incoming)
         if (resp.length) {
             await Promise.all(
                 resp.map(async data => {

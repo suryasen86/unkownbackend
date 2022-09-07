@@ -14,7 +14,7 @@ const subcatgeory = require('../helpers/subcatgeory')
 
 RouteHandler.get('/',async (req,res)=>{
     try {
-        let data =await subcatgeory.getAll(req.body)
+        let data =await subcatgeory.getAll({...req.body,...req.query})
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
     } catch (error) {
         return customError(Constant.statusissue_code,error.message,"Subcategory get all",error,res)

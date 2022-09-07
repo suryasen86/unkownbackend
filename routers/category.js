@@ -8,8 +8,9 @@ const categoryHelper =require('../helpers/category')
 const Constant=require('../Constant')
 const {uploadtoserver} =require('../sys/utils/fileupload')
 RouteHandler.get('/',async (req,res)=>{
+     
     try {   
-        let data=await categoryHelper.getAll()
+        let data=await categoryHelper.getAll(req.query)
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data})
     } catch (error) {
         return customError(Constant.statusissue_code,error.message,"category get all",error,res)

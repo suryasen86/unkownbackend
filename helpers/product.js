@@ -5,9 +5,9 @@ class productHelper{
         
        return await productPersistence.create(incoming)
     }
-    async  getAll(){
+    async  getAll(incoming){
         let finalResponse=[]
-        let data=await productPersistence.getAll()
+        let data=await productPersistence.getAll(incoming)
             for (let index = 0; index < data.length; index++) {
                 let element = data[index];
                 element.product_img=await getimgdata(element.product_img,'/products/')

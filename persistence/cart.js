@@ -19,7 +19,7 @@ class cartPersistence{
         })
     }
     async getCartDetail(cart_id){
-        let query = `SELECT trans_cart_dtl.*, mst_product.* FROM db_unknown.trans_cart_dtl left join mst_product on  trans_cart_dtl.product_id = mst_product.product_id WHERE cart_id= ${cart_id}`
+        let query = `SELECT trans_cart_dtl.*, mst_product.* FROM test.trans_cart_dtl left join mst_product on  trans_cart_dtl.product_id = mst_product.product_id WHERE cart_id= ${cart_id}`
          
         const resData = await sequelizeCon.query(query, {
 

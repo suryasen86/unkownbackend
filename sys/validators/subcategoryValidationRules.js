@@ -6,7 +6,7 @@ const create = () => {
     return [
         isValidString('subcat_name', 2, 100),
         
-        isValidString('subcat_desc', 5, 3000),
+       
         ]
 }
 const patch=()=>{

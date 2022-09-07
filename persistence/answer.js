@@ -22,7 +22,7 @@ class answerPersistance{
  }
  async allProductsKeys(answers){
     // console.log(answers)
-  let   query = `  SELECT product_ids FROM db_unknown.mst_answer where answer_id in (${answers})  and is_active = 1  `
+  let   query = `  SELECT product_ids FROM test.mst_answer where answer_id in (${answers})  and is_active = 1  `
     const resData = await sequelizeCon.query(query, {
 
 

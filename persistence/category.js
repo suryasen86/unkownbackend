@@ -4,8 +4,12 @@ const Constant = require('../Constant')
 const sequelize = require("sequelize");
 const { uploadtoserver, upload } = require('../sys/utils/fileupload')
 class CategoryPersistence {
-    async getAll() {
+    async getAll(incoming) {
+        let {is_active}=incoming
         let query = `SELECT * FROM mst_category   `
+        if(is_active==1){
+            query += 'where is_active = 1'
+        }
         const resData = await sequelizeCon.query(query, {
 
 
@@ -47,7 +51,7 @@ class CategoryPersistence {
         return await Category.create(body)
     }
     async getById(id) {
-        let newQueery = ` SELECT * FROM db_unknown.mst_category where cat_id = ${id}`
+        let newQueery = ` SELECT * FROM test.mst_category where cat_id = ${id}`
 
         const resData = await sequelizeCon.query(newQueery, {
 
@@ -68,7 +72,7 @@ class CategoryPersistence {
     async findByGenderAndAge(gender, from_age, to_age, age_id) {
 
         let newQueery = `SELECT DISTINCT mst_category.cat_id as aw, 
-        mst_category.* FROM db_unknown.mst_category inner join map_category_age on 
+        mst_category.* FROM test.mst_category inner join map_category_age on 
         mst_category.cat_id= map_category_age.cat_id where mst_category.is_active =1 and gender in (2,${gender})
         and map_category_age.age_id = ${age_id}
         `

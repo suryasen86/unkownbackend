@@ -11,7 +11,7 @@ RouteHandler.get('/',async (req,res)=>{
 
    let {user_id=1}=req
     try {
-        let data=await productHelper.getAll()
+        let data=await productHelper.getAll(req.query)
         res.send({status:Constant.statusOK_code,message:Constant.statusOK_msg,data}) 
     } catch (error) {
         return customError(Constant.statusissue_code,error.message,"product get all",error,res)
