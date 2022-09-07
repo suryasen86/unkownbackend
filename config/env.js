@@ -6,7 +6,7 @@ const env = {
   
     username: process.env.SQL_USER,
   
-    password: "PNuoienw&$cGHJVJF23",
+    password: process.env.SQL_PASSOWRD,
   
     host: process.env.SQL_HOST,
   

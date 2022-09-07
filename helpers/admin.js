@@ -1,7 +1,7 @@
 const AdminPercictence=require('../persistence/admin')
 const {generatePassHash,compareHash}=require('../sys/utils')
 const {generateToken,verifyToken} =require("../sys/utils/auth")
-
+const UserHelper=require('./user')
 const cartPersistence=require('../persistence/cart')
 const { getimgdata } = require('../sys/utils/fileupload')
 class AdminHelper {
@@ -34,6 +34,8 @@ class AdminHelper {
         console.log(coupon)
         let cart=await cartPersistence.getCart(coupon)
         if(!cart)throw new Error("Invalid Coupon");
+        let user=await UserHelper.getUserById(cart.user_id)
+       
         let cartObj=await cartPersistence.getCartDetail(cart.cart_id)
         if(cartObj.length){
             for (let index = 0; index < cartObj.length; index++) {
@@ -42,7 +44,7 @@ class AdminHelper {
                 finalCartItems.push(element)
             }
         }
-        return {cart,cartItem:finalCartItems}
+        return {cart,cartItem:finalCartItems,user}
 
     }
 }

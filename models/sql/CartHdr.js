@@ -26,7 +26,7 @@ class CartHdr extends Sequelize.Model {
         tableName: "trans_cart_hdr",
         defaultScope: {
           attributes: {
-            exclude: ["createdAt", "updatedAt", "created_by", "updated_by"],
+            exclude: [ "updatedAt", "created_by", "updated_by"],
           },
         },
       }

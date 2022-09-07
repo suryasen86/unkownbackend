@@ -5,11 +5,11 @@ services:
         image: unknown
         environment:
             - SERVER_PORT=5000
-            - SQL_USER=db-mysql
-            - SQL_HOST=192.46.214.202
-            - SQL_PASSOWRD=PNuoienw&$cGHJVJF23
+            - SQL_USER=root
+            - SQL_HOST=43.205.163.132
+            - SQL_PASSOWRD=root
             - SQL_PORT=3306
-            - DB_DATABASE_NAME=db_unknown
+            - DB_DATABASE_NAME=test
             - CLOUDINARY_NAME=komal9qf0
             - CLOUDINARY_API_KEY=371947551446546
             - CLOUDINARY_API_SECRET=w08QhP0L7adxXFECRsN6Ez13fFU
