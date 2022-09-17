@@ -147,12 +147,13 @@ class catgeoryHelper {
                             data.subcat_ids.map(async element => {
 
                                 let subCat = await SubcategoryHelper.getbyId(element)
+                                // console.log(subCat.subcat_img)
                                 if (subCat && subCat.is_active==1)subcatArr.push(subCat)
                             })
                         )
 
                         data.subcat_ids = subcatArr
-                        console.log(data)
+                        
                     }
 
                 })
